@@ -149,7 +149,78 @@ if __name__ == "__main__":
   print(base, " elevado a ", n , " es:", resultado,)
 ```
 4. Realice pruebas para calcular fibonacci con iteración o con recursión. Determine desde que número de la serie la diferencia de tiempo se vuelve significativa.<br>
+- Plantilla a tener en cuenta:
+```python
+import time
+
+start_time = time.time()
+# instrucciones sobre las cuales se quiere medir tiempo de ejecución
+end_time = time.time()
+
+timer = end_time - start_time
+print(timer)
+```
+- La función recursiva de fibonacci:
+```python
+import time
+
+def fibonacci_recursivo(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci_recursivo(n-1) + fibonacci_recursivo(n-2)
+
+```
+- La función iterativa de fibonacci:
+```python
+def fibonacci_iterativo(n):
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a
+```
+- Al unir y comparar todo obtenemos:
+```python
+import time
+
+def fibonacci_recursivo(n): # Creamos la función recursiva
+    if n <= 1: # Comenzamos con numero menores o igual a 0 por cada numero
+        return n
+    else:
+        return fibonacci_recursivo(n-1) + fibonacci_recursivo(n-2)
+
+def fibonacci_iterativo(n): # Creamos la fucnión iterativa
+    a, b = 0, 1
+    for _ in range(n): # Crear el rango de 0 a n
+        a, b = b, a + b # Se suman las variables
+    return a
+
+def medir_tiempos():
+    # Definir el rango de valores de n para probar (de 30 a 50)
+    for n in range(30, 51):  # Probar para números de 30 a 50
+        # Medir el tiempo de la versión recursiva
+        start_time = time.time()
+        fibonacci_recursivo(n)
+        end_time = time.time()
+        timer_recursivo = end_time - start_time
+        
+        # Medir el tiempo de la versión iterativa
+        start_time = time.time()
+        fibonacci_iterativo(n)
+        end_time = time.time()
+        timer_iterativo = end_time - start_time
+        
+        print("n =", n, ", Recursivo:", timer_recursivo, "segundos,", "Iterativo:", timer_iterativo, "segundos") # Imprimir el resultado 
+        if timer_recursivo > timer_iterativo:
+            print("   Diferencia significativa en n =", n) # Marca ek 30 que esta evaluando
+
+if __name__ == "__main__":
+    medir_tiempos()
+```
+- Finalmente, al pobrar un rango tan grande podemos decir que el interativo siempre es mucho mejor con una potencia negativa y con el numero e
+
 5. Cuenta de stackoverflow 
 [![Captura-de-pantalla-2025-02-05-184716.png](https://i.postimg.cc/dtfbYDYd/Captura-de-pantalla-2025-02-05-184716.png)](https://postimg.cc/N51J8sLf)<br>
 6. Link del perfil de linkedin <br>
-www.linkedin.com/in/maria-fernanda-parra-osorio-05169134b
+www.linkedin.com/in/maria-fernanda-parra-osorio-05169134b  <br>
+*FIN*
