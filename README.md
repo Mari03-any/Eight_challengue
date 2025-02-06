@@ -54,7 +54,100 @@ else:
   print("Error: Ingresa solo números reales.")
 ```
 2. De los retos anteriores selecione 3 funciones y escribalas con argumentos no definidos (*args).<br>
+```python
+# Escriba un programa que pida 5 números reales y calcule la raíz cúbica del menor número
+def raiz_menor(*args):
+    menor = min(args)  # Encuentra el valor mínimo de los argumentos
+    return menor ** (1 / 3)  # Calcula la raíz cúbica del menor número
+
+if __name__ == "__main__":
+    # Ingresar los cinco números como parte de los argumentos
+    n = float(input("Ingrese el primer numero real: "))
+    i = float(input("Ingrese el segundo numero real: "))
+    x = float(input("Ingrese el tercer numero real: "))
+    y = float(input("Ingrese el cuarto numero real: "))
+    z = float(input("Ingrese el quinto numero real: "))
+    
+    # Verificar si todos los números son positivos
+    if n > 0 and i > 0 and x > 0 and y > 0 and z > 0:
+        raiz_cubica = raiz_menor(n, i, x, y, z)  # Pasamos los números como *args
+        print("Raíz cúbica del menor:", raiz_cubica)
+    else:
+        print("Error: Ingresa solo números reales.")
+```
+```python
+# Diseñar una función que permita calcular una aproximación de la función exponencial alrededor de 0 para cualquier valor x (real), utilizando los primeros n términos de la serie de Taylor. 
+
+import math
+
+def exp_aprox(*args):
+    x = args[0]  # Primer argumento es x
+    n = args[1]  # Segundo argumento es el número de términos
+    suma = 0  # Inicializa la suma
+    for i in args[2]:  # Usamos los números pasados en args[2] como el rango de términos
+        t = (x ** i) / math.factorial(i)  # Calcula el término con la función exponencial
+        suma += t  # Suma el término a la secuencia
+    return suma
+
+if __name__ == "__main__":
+    x = float(input("Ingrese el valor de x: "))  # Ingresar x
+    n = int(input("Ingrese el número de términos de la serie: "))  # Ingresar el número de términos
+    aprox = exp_aprox(x, n, range(n))  # Pasamos el rango de términos como parte de *args
+    real = math.exp(x)  # Valor real de e^x
+
+    print("Aproximación de e^x usando", n, "términos:", aprox)  # Imprimir la aproximación
+    print("Valor real de e^x:", real)  # Imprimir el valor real
+    print("Diferencia entre el valor real y la aproximación:", abs(real - aprox))  # Imprimir la diferencia
+```
+```python
+# Una función matemática para calcular el área y el perimetro de un rectangulo 
+
+import math
+
+def calcular_perimetro_rectangulo(*args):
+    a, b = args  # Desempaquetamos los argumentos
+    perimetro_rectangulo = 2 * (a + b)
+    return perimetro_rectangulo
+
+def calcular_area_rectangulo(*args):
+    a, b = args  # Desempaquetamos los argumentos
+    area_rectangulo = a * b
+    return area_rectangulo
+
+if __name__ == "__main__":
+    a = float(input("Ingrese el primer lado del rectángulo: "))
+    b = float(input("Ingrese el segundo lado del rectángulo: "))
+    r = float(input("Ingrese el radio de los círculos: "))
+
+    if a > 0 and b > 0 and r > 0:
+        # Llamadas a las funciones pasando los argumentos con *args
+        perimetro_rectangulo = calcular_perimetro_rectangulo(a, b)
+        area_rectangulo = calcular_area_rectangulo(a, b)
+        
+        print("El perímetro del rectángulo es:", perimetro_rectangulo)
+        print("El área del rectángulo es:", area_rectangulo)
+
+    else:
+        print("El radio y los lados deben ser números positivos.")
+```
 3. Escriba una función recursiva para calcular la operación de la potencia.<br>
+```python
+def potencia_recursiva(base, n):
+  # Caso base 
+  if n == 0: # Cualquier numero elevado a 0 es 1
+    return 1
+  else:
+    # Condicion de la funcion recursiva
+    return base * potencia_recursiva(base, n - 1) # Crea el ciclo hasta que llegue a 0 y multiplica todos los resultados anteriores
+
+if __name__ == "__main__":
+  # El usuario ingresa el numero de la base y el exponente
+  base = int(input("Ingrese la base: "))
+  n = int(input("Ingrese el exponente: "))
+
+  resultado = potencia_recursiva(base, n)
+  print(base, " elevado a ", n , " es:", resultado,)
+```
 4. Realice pruebas para calcular fibonacci con iteración o con recursión. Determine desde que número de la serie la diferencia de tiempo se vuelve significativa.<br>
 5. Cuenta de stackoverflow 
 [![Captura-de-pantalla-2025-02-05-184716.png](https://i.postimg.cc/dtfbYDYd/Captura-de-pantalla-2025-02-05-184716.png)](https://postimg.cc/N51J8sLf)<br>
